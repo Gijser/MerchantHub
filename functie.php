@@ -5,15 +5,17 @@
 function ledgerOverzicht()
 {
     $dbhost = "localhost";
-    $dbuser = "gheetebrij_Qyrilan";
-    $dbpass = "MNM2YNGzu1BFLaow";
-    $db = "gheetebrij_Merchant";
+    $dbuser = "root";
+    $dbpass = "";
+    $db = "ledger";
+
+    $merchantId = $_SESSION["merchant"];
 
     $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
-    $query = "SELECT p_id, p_naam, p_aantal, p_gold, p_silver, p_copper FROM products";
+    $query = "SELECT p_id, p_standard ,p_naam, p_aantal, p_gold, p_silver, p_copper FROM products WHERE p_merchantId = $merchantId";
     $sql = mysqli_query($conn, $query);
 
-
+    echo ;
     if ($sql->num_rows > 0) {
         echo "<table><tr><th>Productnaam</th><th>Aantal</th><th>Gold</th><th>Silver</th><th>Copper</th></tr>";
         // output data of each row
@@ -38,10 +40,12 @@ function ledgerAdd()
 
     if (isset($_POST['toDB'])) {
         $dbhost = "localhost";
-        $dbuser = "gheetebij_Qyrilan";
-        $dbpass = "MNM2YNGzu1BFLaow";
-        $db = "gheetebrij_Merchant";
+        $dbuser = "root";
+        $dbpass = "";
+        $db = "ledger";
 
+        $url = $_SESSION["URL"];
+        $merchantId = $_SESSION["merchant"];
         $name = $_POST['naam'];
         $amount = $_POST['aantal'];
         $gold = $_POST['gold'];
@@ -49,14 +53,39 @@ function ledgerAdd()
         $copper = $_POST['copper'];
 
         $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
-        $sqlInsert = "INSERT INTO products(`p_naam`, `p_aantal`, `p_gold`,`p_silver`,`p_copper`) VALUES ( '$name', '$amount', '$gold', '$silver','$copper' )";
+        $sqlInsert = "INSERT INTO products(`p_merchantId`,`p_naam`, `p_aantal`, `p_gold`,`p_silver`,`p_copper`) VALUES ( '$merchantId', '$name', '$amount', '$gold', '$silver','$copper' )";
 
         if (mysqli_query($conn, $sqlInsert)) {
             //echo "Records inserted successfully.";
-            header("Location:index.php");
+            header("Location:" . $url );
             exit;
         } else {
             echo "ERROR: Could not able to execute $sqlInsert. " . mysqli_error($conn);
         }
     }
+}
+
+function money(){
+    session_start();
+    
+    if (isset($_GET['id'])){
+    $dbhost = "localhost";
+    $dbuser = "root";
+    $dbpass = "";
+    $db = "ledger";
+
+    $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
+    // $query = "";
+    // $sql = mysqli_query($conn, $query);
+    
+    $gold = "200";
+    $silver = "0";
+    $copper = "0";
+    
+    
+    
+    
+    
+    }
+
 }
