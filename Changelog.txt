@@ -1,0 +1,15 @@
+
+
+---------------------------------------------------
+Update 1.0
+---------------------------------------------------
+SYNOPSIS
+    update 1.0 adds all standard features
+---------------------------------------------------
+DESCRIPTION
+    adds the following features:
+    add products
+    up and down amount of a product
+    see the amount of gold you own
+    the gold you own changes depending on if you sell or purchase products
+---------------------------------------------------

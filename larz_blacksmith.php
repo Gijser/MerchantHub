@@ -8,7 +8,6 @@ $_SESSION["URL"] = 'larz_blacksmith.php';
 
 //echo $_SESSION["merchant"];
 
-
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -38,11 +37,21 @@ $_SESSION["URL"] = 'larz_blacksmith.php';
       </div>
     </div>
     <div id="site_content">
+      <div class="sidebar">
+        <?php
+        moneyOverzicht();
+        ?>
+        <p>de 1.xx is het gold aantal</p>
+        <p>de x.1x is het silver aantal</p>
+        <p>de x.x1 is het copper aantal</p>
+      </div>
       <div>
         <?php
         ledgerOverzicht();
+
         ?>
       </div>
+
       <div>
         <form class="form_settings" method="post" name="toevoegen">
           <input type="text" name="naam" placeholder="naam">
@@ -60,6 +69,7 @@ $_SESSION["URL"] = 'larz_blacksmith.php';
         <?php
         ledgerAdd();
         ?>
+
       </div>
     </div>
     <div id="footer">
