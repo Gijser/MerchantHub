@@ -1,9 +1,9 @@
 <?php
-require('functie.php');
+require('../Functies/functie.php');
 session_start();
 
-$_SESSION["merchant"] = '1';
-$_SESSION["URL"] = 'qyrilans_provisions.php';
+$_SESSION["merchant"] = '3';
+$_SESSION["URL"] = 'the_crazy_closet.php';
 
 //echo $_SESSION["merchant"];
 

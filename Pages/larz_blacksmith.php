@@ -1,5 +1,5 @@
 <?php
-require('functie.php');
+require('../Functies/functie.php');
 session_start();
 
 $_SESSION["merchant"] = '2';
