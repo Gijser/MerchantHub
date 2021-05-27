@@ -21,6 +21,7 @@
         <ul id="menu">
           <li><a href="qyrilans_provisions.php">Qyrilan's shop</a></li>
           <li><a href="larz_blacksmith.php">larz's blacksmith</a></li>
+          <li><a href="the_crazy_closet.php">the Crazy Closet</a></li>
           <!-- <li><a href="contact.asp">Contact</a></li>
           <li><a href="about.asp">About</a></li>-->
         </ul>
@@ -30,7 +31,7 @@
 
       <h1>Dit is de ledger van de West Marches shops</h1>
 
-      
+
     </div>
 </body>
 
