@@ -1,10 +1,9 @@
 <?php
 require('functie.php');
-require('Database.php');
 session_start();
 
-$_SESSION["merchant"] = '1';
-$_SESSION["URL"] = 'qyrilans_provisions.php';
+$_SESSION["merchant"] = '3';
+$_SESSION["URL"] = 'the_crazy_closet.php';
 
 //echo $_SESSION["merchant"];
 
@@ -31,6 +30,7 @@ $_SESSION["URL"] = 'qyrilans_provisions.php';
         <ul id="menu">
           <li><a href="qyrilans_provisions.php">Qyrilan's shop</a></li>
           <li><a href="larz_blacksmith.php">larz's blacksmith</a></li>
+          <li><a href="the_crazy_closet.php">the Crazy Closet</a></li>
           <!-- <li><a href="contact.asp">Contact</a></li>
           <li><a href="about.asp">About</a></li>-->
         </ul>
