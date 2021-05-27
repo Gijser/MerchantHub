@@ -3,25 +3,29 @@
 session_start();
 
 if (isset($_GET['id'])){
-    $url = $_SESSION["URL"];
-    $merchant = $_SESSION["merchant"];
+$dbhost = "localhost";
+$dbuser = "root";
+$dbpass = "";
+$db = "ledger";
 
-    $p_id = $_GET['id'];
+$url = $_SESSION["URL"];
+$merchant = $_SESSION["merchant"];
 
-    $mysqli = db_connect();
-    $data = db_getData("UPDATE products SET `p_aantal` = `p_aantal` -1 WHERE p_id = $p_id");
+$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
+$p_id = $_GET['id'];
+$queryUpdate = ("UPDATE products SET `p_aantal` = `p_aantal` -1 WHERE p_id = $p_id");
+$sqlUpdate = mysqli_query($conn, $queryUpdate);
 
-    $mysqli = db_connect();
-    $data = db_getData("SELECT merchants.m_gold, products.p_gold FROM merchants INNER JOIN products ORDER BY m_gold");
+$queryGold = ("SELECT merchants.m_gold, products.p_gold FROM merchants INNER JOIN products ORDER BY m_gold");
+$sqlGold = mysqli_query($conn, $queryGold);
 
-    $row = $sqlGold->fetch_assoc();
-    $addGold = $row["p_gold"];
+$row = $sqlGold->fetch_assoc();
+$addGold = $row["p_gold"];
 
-    $mysqli = db_connect();
-    $data = db_getData("UPDATE merchants SET `m_gold` = `m_gold` - $addGold WHERE m_id = $merchant ");
+$queryLower = ("UPDATE merchants SET `m_gold` = `m_gold` + $addGold WHERE m_id = $merchant ");
 $sqlLower = mysqli_query($conn, $queryLower);
 
-header("Location:../pages/" . $url);
+header("Location:../Pages/" . $url);
 
 
 }
