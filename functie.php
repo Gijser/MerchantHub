@@ -1,22 +1,19 @@
 <?php
+require('Database.php');
 
 function ledgerOverzicht()
 {
-    $dbhost = "localhost";
-    $dbuser = "root";
-    $dbpass = "";
-    $db = "ledger";
 
     $merchantId = $_SESSION["merchant"];
 
-    $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
-    $query = "SELECT p_id, p_standard ,p_naam, p_aantal, p_gold FROM products WHERE p_merchantId = $merchantId";
-    $sql = mysqli_query($conn, $query);
+    $mysqli = db_connect();
+    $data = db_getData("SELECT p_id, p_standard ,p_naam, p_aantal, p_gold FROM products WHERE p_merchantId = $merchantId");
 
-    if ($sql->num_rows > 0) {
+
+    if ($data->num_rows > 0) {
         echo "<table><tr><th>Productnaam</th><th>Aantal</th><th>Gold</th></tr>";
         // output data of each row
-        while ($row = $sql->fetch_assoc()) {
+        while ($row = $data->fetch_assoc()) {
             echo "<tr><td>" . $row["p_naam"] . "</td>
             <td>" . $row["p_aantal"] . " </td>
             <td>" . $row["p_gold"] . "</td>
@@ -32,36 +29,28 @@ function ledgerOverzicht()
 
 function moneyOverzicht()
 {
-    
+
     $merchantId = $_SESSION["merchant"];
 
-    if (isset($merchantId)){
+    if (isset($merchantId)) {
 
-        $dbhost = "localhost";
-        $dbuser = "root";
-        $dbpass = "";
-        $db = "ledger";
+        $mysqli = db_connect();
+        $data = db_getData("SELECT m_gold FROM merchants WHERE m_id = $merchantId");
 
 
-        
-        $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
-        $queryMerchant = "SELECT m_gold FROM merchants WHERE m_id = $merchantId";
-        $sql = mysqli_query($conn, $queryMerchant);
-
-
-        if ($sql->num_rows > 0) {
+        if ($data->num_rows > 0) {
             echo "<table><tr><th>gold</th></tr>";
             // output data of each row
-            while ($row = $sql->fetch_assoc()) {
+            while ($row = $data->fetch_assoc()) {
                 echo "<tr><td>" . $row["m_gold"] . "</td>
                 </td>";
             }
             echo "</table>";
         } else {
             echo "0 results";
-        }      
+        }
     }
-} 
+}
 
 function ledgerAdd()
 {
@@ -92,4 +81,14 @@ function ledgerAdd()
             echo "ERROR: Could not able to execute $sqlInsert. " . mysqli_error($conn);
         }
     }
+}
+
+function login()
+{
+    $dbhost = "localhost";
+    $dbuser = "root";
+    $dbpass = "";
+    $db = "ledger";
+
+    $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
 }

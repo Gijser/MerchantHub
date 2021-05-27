@@ -1,6 +1,5 @@
 <?php
 require('functie.php');
-require('Database.php');
 session_start();
 
 $_SESSION["merchant"] = '1';
